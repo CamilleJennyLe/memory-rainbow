@@ -5,18 +5,18 @@ function App() {
   return (
     <div className="container">
       <div className="memory-board">
-        <Card colorClassName={red} />
-        <Card colorClassName={orange} />
-        <Card colorClassName={yellow} />
-        <Card colorClassName={green} />
-        <Card colorClassName={blue} />
-        <Card colorClassName={purple} />
-        <Card colorClassName={red} />
-        <Card colorClassName={orange} />
-        <Card colorClassName={yellow} />
-        <Card colorClassName={green} />
-        <Card colorClassName={blue} />
-        <Card colorClassName={purple} />
+        <Card cardFrontClassname={red} />
+        <Card cardFrontClassname={orange} />
+        <Card cardFrontClassname={yellow} />
+        <Card cardFrontClassname={green} />
+        <Card cardFrontClassname={blue} />
+        <Card cardFrontClassname={purple} />
+        <Card cardFrontClassname={red} />
+        <Card cardFrontClassname={orange} />
+        <Card cardFrontClassname={yellow} />
+        <Card cardFrontClassname={green} />
+        <Card cardFrontClassname={blue} />
+        <Card cardFrontClassname={purple} />
       </div>
     </div>
   );

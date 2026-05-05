@@ -1,6 +1,5 @@
 .card {
-  width: 200px;
-  height: 200px;
-  background: red;
+  width: calc(100vmin / 3.5);
+  aspect-ratio: 1 / 1;
   border-radius: 8px;
 }

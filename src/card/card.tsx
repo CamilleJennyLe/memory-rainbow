@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { CardColor } from "./card-colors";
+import type { CardColor } from "../shared/types/card.types";
 import "./card.css";
 
 interface CardProps {

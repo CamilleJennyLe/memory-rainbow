@@ -1,22 +1,21 @@
 import "./App.css";
 import Card from "./card/card";
-import { blue, green, orange, purple, red, yellow } from "./card/card-colors";
+import { useBoardStore } from "./board/board.store";
+import { useEffect } from "react";
 function App() {
+  const { board, newGame } = useBoardStore();
+  useEffect(() => {
+    newGame();
+  }, []);
   return (
     <div className="container">
       <div className="memory-board">
-        <Card cardFrontClassname={red} />
-        <Card cardFrontClassname={orange} />
-        <Card cardFrontClassname={yellow} />
-        <Card cardFrontClassname={green} />
-        <Card cardFrontClassname={blue} />
-        <Card cardFrontClassname={purple} />
-        <Card cardFrontClassname={red} />
-        <Card cardFrontClassname={orange} />
-        <Card cardFrontClassname={yellow} />
-        <Card cardFrontClassname={green} />
-        <Card cardFrontClassname={blue} />
-        <Card cardFrontClassname={purple} />
+        {board.map((card, index) => (
+          <Card
+            key={`${index}-${card.color}`}
+            cardFrontClassname={card.color}
+          />
+        ))}
       </div>
     </div>
   );

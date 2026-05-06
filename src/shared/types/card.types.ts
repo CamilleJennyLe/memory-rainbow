@@ -12,3 +12,9 @@ export type CardColor =
   | typeof green
   | typeof blue
   | typeof purple;
+
+export interface CardState {
+  color: CardColor;
+  flipped?: boolean;
+  pairFound?: boolean;
+}

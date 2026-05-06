@@ -5,7 +5,7 @@ export const green = "green";
 export const blue = "blue";
 export const purple = "purple";
 
-export type CardColor =
+type CardColor =
   | typeof red
   | typeof orange
   | typeof yellow

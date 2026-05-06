@@ -1,4 +1,4 @@
-import type { CardState } from "../shared/types/card.types";
+import type { CardState } from "./card.types";
 
 export const cardDeck: CardState[] = [
   { color: "red" },

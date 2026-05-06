@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import { useBoardStore } from "./board.store";
 import { cardDeck } from "./board.constants";
-import * as shuffleUtils from "../shared/utils/shuffle";
-import { red } from "../shared/types/card.types";
+import * as shuffleUtils from "./shuffle";
+import { red } from "./card.types";
 
 function resetBoardStore() {
   useBoardStore.setState({

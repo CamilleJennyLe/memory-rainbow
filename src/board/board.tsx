@@ -1,8 +1,8 @@
-import "./App.css";
-import Card from "./card/card";
-import { useBoardStore } from "./board/board.store";
+import "./board.css";
+import Card from "../card/card";
+import { useBoardStore } from "./board.store";
 import { useEffect } from "react";
-function App() {
+function Board() {
   const { board, newGame, numberOfMoves } = useBoardStore();
   useEffect(() => {
     newGame();
@@ -24,4 +24,4 @@ function App() {
   );
 }
 
-export default App;
+export default Board;

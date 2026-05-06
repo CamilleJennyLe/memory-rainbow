@@ -1,13 +1,7 @@
 # Memory game with rainbow colors
 
-red
-orange
-yellow
-green
-blue
-purple
+6 rainbow colors to pair
 12 cards
-3x4 grid
 
 # Technical notes
 

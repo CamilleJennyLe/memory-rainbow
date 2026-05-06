@@ -1,7 +1,7 @@
 import { create } from "zustand";
-import { shuffleCards } from "../shared/utils/shuffle";
+import { shuffleCards } from "./shuffle";
 import { cardDeck } from "./board.constants";
-import type { CardState } from "../shared/types/card.types";
+import type { CardState } from "./card.types";
 
 interface BoardState {
   board: CardState[];

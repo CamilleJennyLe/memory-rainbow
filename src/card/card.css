@@ -1,5 +1,5 @@
 .card {
-  width: calc(100vmin / 3.5);
+  width: calc(100vmin / 4);
   aspect-ratio: 1 / 1;
   border-radius: 8px;
 }

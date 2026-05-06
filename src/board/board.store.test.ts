@@ -70,6 +70,7 @@ describe("Board Store - flipCard", () => {
     expect(
       board.some((card, idx) => idx !== indexToFlip && card.flipped),
     ).toBeFalsy();
+    expect(useBoardStore.getState().numberOfMoves).toBe(1);
   });
   it("should not flip the card if the card is part of a pair found", () => {
     const indexWithPairFound = 2;
@@ -87,6 +88,7 @@ describe("Board Store - flipCard", () => {
 
     const { board } = useBoardStore.getState();
     expect(board[indexWithPairFound].flipped).toBeFalsy();
+    expect(useBoardStore.getState().numberOfMoves).toBe(0);
   });
 
   it("should not flip the card if there are already 2 cards shown and are not part of a found pair", () => {
@@ -101,6 +103,7 @@ describe("Board Store - flipCard", () => {
 
     const { board } = useBoardStore.getState();
     expect(board[2].flipped).toBeFalsy();
+    expect(useBoardStore.getState().numberOfMoves).toBe(0);
   });
 
   it("should mark the found pairs when a card is flipped", () => {
@@ -117,5 +120,6 @@ describe("Board Store - flipCard", () => {
     const { board } = useBoardStore.getState();
     expect(board[firstRedIndex].pairFound).toBeTruthy();
     expect(board[secondRedIndex].pairFound).toBeTruthy();
+    expect(useBoardStore.getState().numberOfMoves).toBe(2);
   });
 });

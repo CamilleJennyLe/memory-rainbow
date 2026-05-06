@@ -5,6 +5,7 @@ import type { CardState } from "../shared/types/card.types";
 
 interface BoardState {
   board: CardState[];
+  numberOfMoves: number;
   newGame: () => void;
   flipCard: (id: number) => void;
 }
@@ -13,11 +14,13 @@ export const useBoardStore = create<BoardState>(
   (set) =>
     ({
       board: [],
+      numberOfMoves: 0,
       newGame: () =>
         set(() => {
           const shuffled = shuffleCards(cardDeck);
           return {
             board: [...shuffled],
+            numberOfMoves: 0,
           };
         }),
       flipCard: (flippedCardIndex) =>
@@ -26,20 +29,30 @@ export const useBoardStore = create<BoardState>(
             (card) => card.flipped && !card.pairFound,
           ).length;
           const cardToFlip = state.board[flippedCardIndex];
+
           // Don't flip if card already has pairFound
           if (cardToFlip.pairFound) {
-            return { board: state.board };
+            return { board: state.board, numberOfMoves: state.numberOfMoves };
           }
+
           // Don't flip if two cards are already flipped (but not part of found pairs)
           if (!cardToFlip.flipped && alreadyFlippedCount >= 2) {
-            return { board: state.board };
+            return { board: state.board, numberOfMoves: state.numberOfMoves };
           }
-          // Flip the card
+
+          // Determine if the card will actually be flipped
+          const willBeFlipped = !cardToFlip.flipped;
+          let numberOfMoves = state.numberOfMoves;
+
           const newBoard = state.board.map((card, index) =>
             index === flippedCardIndex
               ? { ...card, flipped: !card.flipped }
               : card,
           );
+
+          if (willBeFlipped) {
+            numberOfMoves += 1;
+          }
 
           // After flipping, check for a found pair
           const flippedNotFoundCards = newBoard
@@ -56,11 +69,12 @@ export const useBoardStore = create<BoardState>(
                     ? { ...card, pairFound: true }
                     : card,
                 ),
+                numberOfMoves,
               };
             }
           }
 
-          return { board: newBoard };
+          return { board: newBoard, numberOfMoves };
         }),
     }) satisfies BoardState,
 );

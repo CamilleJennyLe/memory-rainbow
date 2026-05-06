@@ -8,9 +8,35 @@
 
 .container {
   display: flex;
-  flex-direction: column;
   align-items: center;
   box-sizing: border-box;
   height: 100dvh;
   justify-content: center;
+  gap: 2em;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.new-game-button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background: linear-gradient(
+    90deg,
+    red,
+    orange,
+    yellow,
+    #59ee59,
+    #57c4e8,
+    #b93ab9
+  );
+  color: black;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.15em;
 }

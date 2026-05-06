@@ -3,7 +3,7 @@ import Card from "./card/card";
 import { useBoardStore } from "./board/board.store";
 import { useEffect } from "react";
 function App() {
-  const { board, newGame } = useBoardStore();
+  const { board, newGame, numberOfMoves } = useBoardStore();
   useEffect(() => {
     newGame();
   }, []);
@@ -13,6 +13,12 @@ function App() {
         {board.map((card, index) => (
           <Card key={`${index}-${card.color}`} index={index} />
         ))}
+      </div>
+      <div className="header">
+        <button className="new-game-button" onClick={newGame}>
+          New Game
+        </button>
+        <p>Number of moves: {numberOfMoves}</p>
       </div>
     </div>
   );

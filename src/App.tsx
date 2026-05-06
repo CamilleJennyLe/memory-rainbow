@@ -11,12 +11,7 @@ function App() {
     <div className="container">
       <div className="memory-board">
         {board.map((card, index) => (
-          <Card
-            key={`${index}-${card.color}`}
-            cardFrontClassname={card.color}
-            cardState={card}
-            index={index}
-          />
+          <Card key={`${index}-${card.color}`} index={index} />
         ))}
       </div>
     </div>

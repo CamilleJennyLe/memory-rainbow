@@ -22,13 +22,27 @@ export const useBoardStore = create<BoardState>(
           };
         }),
       flipCard: (flippedCardIndex) =>
-        set((state) => ({
-          board: state.board.map((card, index) =>
-            index === flippedCardIndex
-              ? { ...card, flipped: !card.flipped }
-              : card,
-          ),
-        })),
+        set((state) => {
+          const alreadyFlippedCount = state.board.filter(
+            (card) => card.flipped && !card.pairFound,
+          ).length;
+          const cardToFlip = state.board[flippedCardIndex];
+          // Don't flip if card already has pairFound
+          if (cardToFlip.pairFound) {
+            return { board: state.board };
+          }
+          // Don't flip if two cards are already flipped (but not part of found pairs)
+          if (!cardToFlip.flipped && alreadyFlippedCount >= 2) {
+            return { board: state.board };
+          }
+          return {
+            board: state.board.map((card, index) => {
+              if (index !== flippedCardIndex) return card;
+              return { ...card, flipped: !card.flipped };
+            }),
+          };
+        }),
+
       setPairFound: (firstIndex, secondIndex) =>
         set((state) => ({
           board: state.board.map((card, index) =>

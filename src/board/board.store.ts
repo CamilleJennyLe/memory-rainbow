@@ -18,7 +18,6 @@ export const useBoardStore = create<BoardState>(
         set(() => {
           const shuffled = shuffleCards(cardDeck);
           return {
-            initialBoard: shuffled,
             board: [...shuffled],
           };
         }),

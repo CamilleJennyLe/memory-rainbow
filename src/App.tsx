@@ -14,6 +14,8 @@ function App() {
           <Card
             key={`${index}-${card.color}`}
             cardFrontClassname={card.color}
+            cardState={card}
+            index={index}
           />
         ))}
       </div>

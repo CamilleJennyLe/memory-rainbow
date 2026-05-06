@@ -1,16 +1,18 @@
-import { useState } from "react";
-import type { CardColor } from "../shared/types/card.types";
+import type { CardColor, CardState } from "../shared/types/card.types";
 import "./card.css";
+import { useBoardStore } from "../board/board.store";
 
 interface CardProps {
   cardFrontClassname: CardColor;
+  cardState: CardState;
+  index: number;
 }
-function Card({ cardFrontClassname }: CardProps) {
-  const [isFlipped, setIsFlipped] = useState(false);
+function Card({ cardFrontClassname, cardState, index }: CardProps) {
+  const { flipCard } = useBoardStore();
   return (
     <div
-      className={`card ${isFlipped ? cardFrontClassname : "card-back"}`}
-      onClick={() => setIsFlipped(true)}
+      className={`card ${cardState.flipped ? cardFrontClassname : "card-back"}`}
+      onClick={() => flipCard(index)}
     />
   );
 }

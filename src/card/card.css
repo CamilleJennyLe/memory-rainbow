@@ -3,6 +3,7 @@
   aspect-ratio: 1 / 1;
   border-radius: 8px;
 }
+
 .card-back {
   background-color: gray !important;
 }

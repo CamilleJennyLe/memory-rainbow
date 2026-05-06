@@ -7,7 +7,6 @@ interface BoardState {
   board: CardState[];
   newGame: () => void;
   flipCard: (id: number) => void;
-  setPairFound: (firstId: number, secondId: number) => void;
 }
 
 export const useBoardStore = create<BoardState>(
@@ -35,21 +34,33 @@ export const useBoardStore = create<BoardState>(
           if (!cardToFlip.flipped && alreadyFlippedCount >= 2) {
             return { board: state.board };
           }
-          return {
-            board: state.board.map((card, index) => {
-              if (index !== flippedCardIndex) return card;
-              return { ...card, flipped: !card.flipped };
-            }),
-          };
-        }),
-
-      setPairFound: (firstIndex, secondIndex) =>
-        set((state) => ({
-          board: state.board.map((card, index) =>
-            index === firstIndex || index === secondIndex
-              ? { ...card, pairFound: true }
+          // Flip the card
+          const newBoard = state.board.map((card, index) =>
+            index === flippedCardIndex
+              ? { ...card, flipped: !card.flipped }
               : card,
-          ),
-        })),
+          );
+
+          // After flipping, check for a found pair
+          const flippedNotFoundCards = newBoard
+            .map((card, idx) => ({ ...card, index: idx }))
+            .filter((card) => card.flipped && !card.pairFound);
+
+          if (flippedNotFoundCards.length === 2) {
+            const [first, second] = flippedNotFoundCards;
+            if (first.color === second.color) {
+              // It's a pair! Mark them as found
+              return {
+                board: newBoard.map((card, idx) =>
+                  idx === first.index || idx === second.index
+                    ? { ...card, pairFound: true }
+                    : card,
+                ),
+              };
+            }
+          }
+
+          return { board: newBoard };
+        }),
     }) satisfies BoardState,
 );

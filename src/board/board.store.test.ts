@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach, vi } from "vitest";
 import { useBoardStore } from "./board.store";
 import { cardDeck } from "./board.constants";
 import * as shuffleUtils from "../shared/utils/shuffle";
+import { red } from "../shared/types/card.types";
 
 function resetBoardStore() {
   useBoardStore.setState({
@@ -100,5 +101,21 @@ describe("Board Store - flipCard", () => {
 
     const { board } = useBoardStore.getState();
     expect(board[2].flipped).toBeFalsy();
+  });
+
+  it("should mark the found pairs when a card is flipped", () => {
+    const reds = useBoardStore
+      .getState()
+      .board.map((card, index) => ({ ...card, index }))
+      .filter((card) => card.color === red);
+    const firstRedIndex = reds[0].index;
+    const secondRedIndex = reds[1].index;
+
+    useBoardStore.getState().flipCard(firstRedIndex);
+    useBoardStore.getState().flipCard(secondRedIndex);
+
+    const { board } = useBoardStore.getState();
+    expect(board[firstRedIndex].pairFound).toBeTruthy();
+    expect(board[secondRedIndex].pairFound).toBeTruthy();
   });
 });

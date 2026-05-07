@@ -4,3 +4,19 @@ body,
   margin: 0;
   padding: 0;
 }
+
+/* Mode sombre */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #121212;
+    color: #ffffff;
+  }
+}
+
+/* Mode clair */
+@media (prefers-color-scheme: light) {
+  body {
+    background: #ffffff;
+    color: #000000;
+  }
+}

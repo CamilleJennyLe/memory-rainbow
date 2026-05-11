@@ -91,7 +91,7 @@ describe("Board Store - flipCard", () => {
     expect(useBoardStore.getState().numberOfMoves).toBe(0);
   });
 
-  it("should not flip the card if there are already 2 cards shown and are not part of a found pair", () => {
+  it("should show the third card and hide the other two cards if there are 2 cards shown which are not part of a found pair", () => {
     // Set up board state: 2 cards already flipped (not pairFound), 1 more not flipped
     const newBoard = [...useBoardStore.getState().board];
     newBoard[0] = { ...newBoard[0], flipped: true, pairFound: false };
@@ -102,7 +102,25 @@ describe("Board Store - flipCard", () => {
     useBoardStore.getState().flipCard(2);
 
     const { board } = useBoardStore.getState();
-    expect(board[2].flipped).toBeFalsy();
+    expect(board[2].flipped).toBeTruthy();
+    expect(board[0].flipped).toBeFalsy();
+    expect(board[1].flipped).toBeFalsy();
+    expect(useBoardStore.getState().numberOfMoves).toBe(1);
+  });
+
+  it("should hide the 2 cards shown which are not part of a found pair", () => {
+    // Set up board state: 2 cards already flipped (not pairFound), 1 more not flipped
+    const newBoard = [...useBoardStore.getState().board];
+    newBoard[0] = { ...newBoard[0], flipped: true, pairFound: false };
+    newBoard[1] = { ...newBoard[1], flipped: true, pairFound: false };
+    useBoardStore.setState({ board: newBoard });
+
+    // Attempt to flip the second card (index 1)
+    useBoardStore.getState().flipCard(1);
+
+    const { board } = useBoardStore.getState();
+    expect(board[0].flipped).toBeFalsy();
+    expect(board[1].flipped).toBeFalsy();
     expect(useBoardStore.getState().numberOfMoves).toBe(0);
   });
 

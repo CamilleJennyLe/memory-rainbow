@@ -14,7 +14,7 @@ function Board() {
           <Card key={`${index}-${card.color}`} index={index} />
         ))}
       </div>
-      <div className="header">
+      <div className="actions">
         <button className="new-game-button" onClick={newGame}>
           New Game
         </button>

@@ -1,6 +1,11 @@
 .card {
-  width: calc(100vmin / 4);
-  aspect-ratio: 1 / 1;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
   border-radius: 8px;
 }
 

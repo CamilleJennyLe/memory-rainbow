@@ -9,16 +9,16 @@ function Board() {
   }, []);
   return (
     <div className="container">
+      <div className="actions">
+        <p>Number of moves: {numberOfMoves}</p>
+        <button className="new-game-button" onClick={newGame}>
+          New Game
+        </button>
+      </div>
       <div className="memory-board">
         {board.map((card, index) => (
           <Card key={`${index}-${card.color}`} index={index} />
         ))}
-      </div>
-      <div className="actions">
-        <button className="new-game-button" onClick={newGame}>
-          New Game
-        </button>
-        <p>Number of moves: {numberOfMoves}</p>
       </div>
     </div>
   );

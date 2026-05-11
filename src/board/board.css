@@ -1,9 +1,14 @@
 .memory-board {
-  gap: 1em;
+  gap: 0.5rem;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
   box-sizing: border-box;
+  flex-grow: 1;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 0;
 }
 
 .container {
@@ -13,30 +18,21 @@
   height: 100dvh;
   min-height: fit-content;
   justify-content: center;
-  gap: 1em;
-  padding: 1em;
+  gap: 1rem;
+  padding: 1rem;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .actions {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-  gap: 1em;
-}
-
-@media (orientation: portrait) {
-  .container {
-    flex-direction: column;
-  }
-  .memory-board {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-  }
-  .actions {
-    flex-direction: row;
-    font-size: 1.5em;
-  }
+  justify-content: space-between;
+  gap: 1rem;
+  min-width: fit-content;
+  width: 100%;
 }
 
 .new-game-button {
@@ -55,5 +51,12 @@
   border: none;
   cursor: pointer;
   font-weight: bold;
-  font-size: 1.15em;
+  font-size: 1.15rem;
+}
+
+@media (orientation: portrait) {
+  .memory-board {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+  }
 }

@@ -58,6 +58,9 @@ describe("Board Store - flipCard", () => {
     vi.restoreAllMocks();
     resetBoardStore();
     useBoardStore.getState().newGame();
+    useBoardStore.setState({
+      board: cardDeck,
+    });
   });
   it("should flip the card at the given index", () => {
     const indexToFlip = 3;
@@ -139,5 +142,20 @@ describe("Board Store - flipCard", () => {
     expect(board[firstRedIndex].pairFound).toBeTruthy();
     expect(board[secondRedIndex].pairFound).toBeTruthy();
     expect(useBoardStore.getState().numberOfMoves).toBe(2);
+  });
+
+  it("should flip the cards following a found pair and keep the found pairs shown", () => {
+    useBoardStore.getState().flipCard(0);
+    useBoardStore.getState().flipCard(1);
+    useBoardStore.getState().flipCard(2);
+    useBoardStore.getState().flipCard(4);
+    useBoardStore.getState().flipCard(6);
+    const { board } = useBoardStore.getState();
+    expect(board[0].flipped).toBeTruthy();
+    expect(board[1].flipped).toBeTruthy();
+    expect(board[2].flipped).toBeFalsy();
+    expect(board[4].flipped).toBeFalsy();
+    expect(board[6].flipped).toBeTruthy();
+    expect(useBoardStore.getState().numberOfMoves).toBe(5);
   });
 });

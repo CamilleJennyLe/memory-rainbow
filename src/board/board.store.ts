@@ -34,12 +34,16 @@ export const useBoardStore = create<BoardState>(
 
           // Get currently shown cards which are not part of a found pair
           const shownNotFoundCards = getShownNotFoundCards(state.board);
-          // If two cards (not part of a found pair) are shown, hide them
-          if (shownNotFoundCards.length === 2) {
-            return flipOnlyTappedCardAndHideOthers(
+
+          // If two mismatched cards are shown, then hide them
+          if (
+            shownNotFoundCards.length === 2 &&
+            !shownNotFoundCards.every(({ card }) => card.pairFound)
+          ) {
+            return flipTappedCardAndHideMismatched(
               state,
               tappedCardIndex,
-              cardToFlip,
+              shownNotFoundCards,
             );
           }
 
@@ -61,17 +65,25 @@ export const useBoardStore = create<BoardState>(
         }),
     }) satisfies BoardState,
 );
-function flipOnlyTappedCardAndHideOthers(
+function flipTappedCardAndHideMismatched(
   state: BoardState,
   tappedCardIndex: number,
-  cardToFlip: CardState,
+  shownNotFoundCards: { card: CardState; index: number }[],
 ) {
   // Flip only the tapped card (if not already flipped), hide the others.
-  const isNewFlip = !cardToFlip.flipped;
-  const newBoard = state.board.map((card, idx) => ({
-    ...card,
-    flipped: idx === tappedCardIndex && isNewFlip,
-  }));
+  const isNewFlip = !state.board[tappedCardIndex].flipped;
+  const newBoard = state.board.map((card, idx) => {
+    if (idx === tappedCardIndex && isNewFlip) {
+      return {
+        ...card,
+        flipped: true,
+      };
+    }
+    if (shownNotFoundCards.some(({ index }) => index === idx)) {
+      return { ...card, flipped: false };
+    }
+    return card;
+  });
   const numberOfMoves = isNewFlip
     ? state.numberOfMoves + 1
     : state.numberOfMoves;
@@ -89,7 +101,11 @@ function updateBoardWithFoundPairIfAny(board: CardState[]): CardState[] {
   if (shownNotFoundCards.length === 2) {
     const [first, second] = shownNotFoundCards;
     if (first.card.color === second.card.color) {
-      return board.map((card) => ({ ...card, pairFound: true }));
+      return board.map((card, index) =>
+        index === first.index || index === second.index
+          ? { ...card, pairFound: true }
+          : card,
+      );
     }
   }
   return board;

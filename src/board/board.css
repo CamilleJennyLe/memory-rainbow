@@ -1,5 +1,5 @@
 .memory-board {
-  gap: 0.5rem;
+  gap: 1rem;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-template-rows: repeat(3, minmax(0, 1fr));
@@ -76,5 +76,17 @@
   .memory-board {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-template-rows: repeat(4, minmax(0, 1fr));
+  }
+  .actions {
+    font-size: 2rem;
+  }
+  .new-game-button {
+    font-size: 3rem;
+  }
+  .overlay-content {
+    font-size: 3rem;
+  }
+  .overlay-content h1 {
+    font-size: 4em;
   }
 }

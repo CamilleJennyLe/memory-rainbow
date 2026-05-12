@@ -22,7 +22,7 @@ function Board() {
       </div>
       <div className="memory-board">
         {board.map((card, index) => (
-          <Card key={`${index}-${card.color}`} index={index} />
+          <Card key={`${index}-${card.cardClassName}`} index={index} />
         ))}
       </div>
       {isWin && (

@@ -1,14 +1,15 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { rainbowDeck } from "../card-deck/card-deck";
 import { useBoardStore } from "./board.store";
-import { cardDeck } from "./board.constants";
 import * as shuffleUtils from "./shuffle";
-import { red } from "./card.types";
 
 function resetBoardStore() {
   useBoardStore.setState({
     board: [],
   });
 }
+
+const cardDeck = [...rainbowDeck, ...rainbowDeck];
 
 describe("Board Store - newGame", () => {
   beforeEach(() => {
@@ -58,9 +59,6 @@ describe("Board Store - flipCard", () => {
     vi.restoreAllMocks();
     resetBoardStore();
     useBoardStore.getState().newGame();
-    useBoardStore.setState({
-      board: cardDeck,
-    });
   });
   it("should flip the card at the given index", () => {
     const indexToFlip = 3;
@@ -128,23 +126,26 @@ describe("Board Store - flipCard", () => {
   });
 
   it("should mark the found pairs when a card is flipped", () => {
-    const reds = useBoardStore
-      .getState()
-      .board.map((card, index) => ({ ...card, index }))
-      .filter((card) => card.color === red);
-    const firstRedIndex = reds[0].index;
-    const secondRedIndex = reds[1].index;
+    const newBoard = [...useBoardStore.getState().board].sort((a, b) =>
+      a.cardClassName.localeCompare(b.cardClassName),
+    );
+    useBoardStore.setState({ board: newBoard });
 
-    useBoardStore.getState().flipCard(firstRedIndex);
-    useBoardStore.getState().flipCard(secondRedIndex);
+    useBoardStore.getState().flipCard(0);
+    useBoardStore.getState().flipCard(1);
 
     const { board } = useBoardStore.getState();
-    expect(board[firstRedIndex].pairFound).toBeTruthy();
-    expect(board[secondRedIndex].pairFound).toBeTruthy();
+    expect(board[0].pairFound).toBeTruthy();
+    expect(board[1].pairFound).toBeTruthy();
     expect(useBoardStore.getState().numberOfMoves).toBe(2);
   });
 
   it("should flip the cards following a found pair and keep the found pairs shown", () => {
+    const newBoard = [...useBoardStore.getState().board].sort((a, b) =>
+      a.cardClassName.localeCompare(b.cardClassName),
+    );
+    useBoardStore.setState({ board: newBoard });
+
     useBoardStore.getState().flipCard(0);
     useBoardStore.getState().flipCard(1);
     useBoardStore.getState().flipCard(2);

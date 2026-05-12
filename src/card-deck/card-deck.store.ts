@@ -11,6 +11,8 @@ interface DeckState {
   config: DeckConfig;
   difficulty: Difficulty;
   generateDeck: () => CardState[];
+  setConfig: (config: DeckConfig) => void;
+  setDifficulty: (difficulty: Difficulty) => void;
 }
 
 export const useDeckStore = create<DeckState>(() => ({
@@ -29,5 +31,11 @@ export const useDeckStore = create<DeckState>(() => ({
       deck.push(...catDeck, ...catDeck);
     }
     return deck;
+  },
+  setConfig: (config: DeckConfig) => {
+    useDeckStore.setState({ config });
+  },
+  setDifficulty: (difficulty: Difficulty) => {
+    useDeckStore.setState({ difficulty });
   },
 }));

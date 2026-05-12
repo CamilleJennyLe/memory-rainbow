@@ -3,6 +3,7 @@ import Card from "../card/card";
 import "./board.css";
 import { useBoardStore } from "./board.store";
 import Win from "./win/win";
+import { CardDeckConfig } from "../card-deck/card-deck-config";
 function Board() {
   const { board, newGame, numberOfMoves } = useBoardStore();
   useEffect(() => {
@@ -22,6 +23,7 @@ function Board() {
           <Card key={`${index}-${card.cardClassName}`} index={index} />
         ))}
       </div>
+      <CardDeckConfig />
       {isWin && <Win />}
     </div>
   );

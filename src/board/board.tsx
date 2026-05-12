@@ -15,9 +15,9 @@ function Board() {
   return (
     <div className="container">
       <div className="actions">
-        <p>Number of moves: {numberOfMoves}</p>
+        <p>Nombre de coups: {numberOfMoves}</p>
         <button className="new-game-button" onClick={newGame}>
-          New Game
+          Nouvelle partie
         </button>
       </div>
       <div className="memory-board">

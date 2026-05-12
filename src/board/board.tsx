@@ -1,17 +1,14 @@
 import { useEffect } from "react";
 import Card from "../card/card";
-import { getRandomFunFact } from "../fun-facts";
 import "./board.css";
 import { useBoardStore } from "./board.store";
+import Win from "./win/win";
 function Board() {
   const { board, newGame, numberOfMoves } = useBoardStore();
   useEffect(() => {
     newGame();
-  }, []);
+  }, [newGame]);
   const isWin = board.every((card) => card.pairFound);
-  function closeOverlay() {
-    newGame();
-  }
   return (
     <div className="container">
       <div className="actions">
@@ -25,14 +22,7 @@ function Board() {
           <Card key={`${index}-${card.cardClassName}`} index={index} />
         ))}
       </div>
-      {isWin && (
-        <div className="overlay" onClick={closeOverlay}>
-          <div className="overlay-content">
-            <h1>Gagné!</h1>
-            <p>{getRandomFunFact()}</p>
-          </div>
-        </div>
-      )}
+      {isWin && <Win />}
     </div>
   );
 }

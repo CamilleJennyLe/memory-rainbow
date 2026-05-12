@@ -54,37 +54,9 @@
   font-size: 1.15rem;
 }
 
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.overlay-content {
-  text-align: center;
-  color: white;
-  padding: 1rem;
-}
-
 @media (orientation: portrait) {
   .memory-board {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-template-rows: repeat(4, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 600px) {
-  .overlay-content {
-    font-size: 1.5rem;
-  }
-  .overlay-content h1 {
-    font-size: 2rem;
   }
 }

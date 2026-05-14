@@ -1,8 +1,9 @@
-import { describe, it, expect, beforeEach } from "vitest";
+import { describe, it, expect, beforeEach, vi } from "vitest";
 import { useDeckStore } from "./card-deck.store";
 import { catDeck, rainbowDeck } from "../card-deck";
 import { levelOne } from "../difficulty";
 import type { CardState } from "../../board/card.types";
+import * as cardDeckModule from "../card-deck";
 
 // Helper to reset zustand store state
 function resetDeckStore() {
@@ -17,6 +18,7 @@ function resetDeckStore() {
 
 describe("Deck Store - generateDeck", () => {
   beforeEach(() => {
+    vi.restoreAllMocks();
     resetDeckStore();
   });
 
@@ -45,9 +47,7 @@ describe("Deck Store - generateDeck", () => {
     expectDeckHasAllCardsTwice(catDeck, generatedDeck);
   });
 
-  //it should use the two selected decks
-
-  it("should generate 12 cards for difficulty level one (12 cards)", () => {
+  it("should use the two selected decks", () => {
     useDeckStore.setState({
       config: {
         includeRainbow: true,
@@ -55,9 +55,19 @@ describe("Deck Store - generateDeck", () => {
       },
       difficulty: levelOne,
     });
+    // Mock the catDeck and rainbowDeck to have only 5 cards each
+    const shortRainbowDeck = rainbowDeck.slice(0, 5);
+    const shortCatDeck = catDeck.slice(0, 5);
+
+    vi.spyOn(cardDeckModule, "rainbowDeck", "get").mockReturnValue(
+      shortRainbowDeck,
+    );
+    vi.spyOn(cardDeckModule, "catDeck", "get").mockReturnValue(shortCatDeck);
+
     const generateDeck = useDeckStore.getState().generateDeck;
     const generatedDeck = generateDeck();
-    expect(generatedDeck.length).toBe(12);
+
+    expectDeckHasAllCardsTwice([...rainbowDeck, ...catDeck], generatedDeck);
   });
 });
 

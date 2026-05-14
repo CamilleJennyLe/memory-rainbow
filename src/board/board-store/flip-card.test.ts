@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 import { useBoardStore } from "./board.store";
 
 function resetBoardStore() {
@@ -9,7 +9,6 @@ function resetBoardStore() {
 
 describe("Board Store - flipCard", () => {
   beforeEach(() => {
-    vi.restoreAllMocks();
     resetBoardStore();
     useBoardStore.getState().newGame();
   });

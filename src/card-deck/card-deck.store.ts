@@ -1,25 +1,12 @@
 import { create } from "zustand";
-import { levelOne, type Difficulty } from "./difficulty";
-import type { CardState } from "../board/card.types";
 import { catDeck, rainbowDeck } from "./card-deck";
-
-interface DeckConfig {
-  includeRainbow: boolean;
-  includeCats: boolean;
-}
-interface DeckState {
-  config: DeckConfig;
-  difficulty: Difficulty;
-  generateDeck: () => CardState[];
-  setConfig: (config: DeckConfig) => void;
-  setDifficulty: (difficulty: Difficulty) => void;
-}
+import type { DeckConfig, DeckState } from "./card-deck.type";
+import { levelOne, type Difficulty } from "./difficulty";
+import { getDeckConfig } from "../storage/card-deck-config";
+import { saveDeckConfig } from "../storage/card-deck-config";
 
 export const useDeckStore = create<DeckState>(() => ({
-  config: {
-    includeRainbow: true,
-    includeCats: false,
-  },
+  config: getDeckConfig(),
   difficulty: levelOne,
   generateDeck: () => {
     const config = useDeckStore.getState().config;
@@ -34,6 +21,7 @@ export const useDeckStore = create<DeckState>(() => ({
   },
   setConfig: (config: DeckConfig) => {
     useDeckStore.setState({ config });
+    saveDeckConfig(config);
   },
   setDifficulty: (difficulty: Difficulty) => {
     useDeckStore.setState({ difficulty });

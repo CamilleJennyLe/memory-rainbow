@@ -13,12 +13,15 @@ export const useDeckStore = create<DeckState>(() => ({
     const config = useDeckStore.getState().config;
     const deck = [];
     if (config.includeRainbow) {
-      deck.push(...rainbowDeck, ...rainbowDeck);
+      deck.push(...rainbowDeck);
     }
     if (config.includeCats) {
-      deck.push(...catDeck, ...catDeck);
+      deck.push(...catDeck);
     }
-    return shuffleCards(deck);
+    const shuffledDeck = shuffleCards(deck);
+    const difficulty = useDeckStore.getState().difficulty;
+    const halfDeck = shuffledDeck.slice(0, Math.floor(difficulty / 2));
+    return shuffleCards([...halfDeck, ...halfDeck]);
   },
   setConfig: (config: DeckConfig) => {
     useDeckStore.setState({ config });

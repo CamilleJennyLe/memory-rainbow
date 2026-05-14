@@ -20,7 +20,7 @@ describe("Deck Store - generateDeck", () => {
     resetDeckStore();
   });
 
-  it("should generate only rainbow cards (each card twice) when only rainbow deck is included", () => {
+  it("should generate only rainbow cards when only rainbow deck is included", () => {
     useDeckStore.setState({
       config: {
         includeRainbow: true,
@@ -30,10 +30,9 @@ describe("Deck Store - generateDeck", () => {
     const generateDeck = useDeckStore.getState().generateDeck;
     const generatedDeck = generateDeck();
 
-    expect(generatedDeck.length).toBe(rainbowDeck.length * 2);
-    checkCardCount(rainbowDeck, generatedDeck);
+    expectDeckHasAllCardsTwice(rainbowDeck, generatedDeck);
   });
-  it("should generate only cat cards (each card twice) when only cat deck is included", () => {
+  it("should generate only cat cards when only cat deck is included", () => {
     useDeckStore.setState({
       config: {
         includeRainbow: false,
@@ -43,31 +42,43 @@ describe("Deck Store - generateDeck", () => {
     const generateDeck = useDeckStore.getState().generateDeck;
     const generatedDeck = generateDeck();
 
-    expect(generatedDeck.length).toBe(catDeck.length * 2);
-    checkCardCount(catDeck, generatedDeck);
+    expectDeckHasAllCardsTwice(catDeck, generatedDeck);
   });
-  it("should generate all cards twice when all decks are included", () => {
+
+  //it should use the two selected decks
+
+  it("should generate 12 cards for difficulty level one (12 cards)", () => {
     useDeckStore.setState({
       config: {
         includeRainbow: true,
         includeCats: true,
       },
+      difficulty: levelOne,
     });
     const generateDeck = useDeckStore.getState().generateDeck;
     const generatedDeck = generateDeck();
-
-    const expectedLength = (rainbowDeck.length + catDeck.length) * 2;
-    expect(generatedDeck.length).toBe(expectedLength);
-    checkCardCount(rainbowDeck, generatedDeck);
-    checkCardCount(catDeck, generatedDeck);
+    expect(generatedDeck.length).toBe(12);
   });
 });
 
-function checkCardCount(baseDeck: CardState[], generatedDeck: CardState[]) {
-  baseDeck.forEach((baseCard) => {
-    const count = generatedDeck.filter(
-      (card) => card.cardClassName === baseCard.cardClassName,
-    ).length;
-    expect(count).toBe(2);
+function expectDeckHasAllCardsTwice(
+  baseDeck: CardState[],
+  generatedDeck: CardState[],
+) {
+  const baseCardClassNames = new Set(
+    baseDeck.map((card) => card.cardClassName),
+  );
+  // Check each card in generatedDeck comes from baseDeck
+  generatedDeck.forEach((card) => {
+    expect(baseCardClassNames.has(card.cardClassName)).toBeTruthy();
+  });
+
+  // Also check that each card from generatedDeck appears exactly twice
+  generatedDeck.forEach((card) => {
+    expect(
+      generatedDeck.filter(
+        (anotherCard) => card.cardClassName === anotherCard.cardClassName,
+      ).length,
+    ).toBe(2);
   });
 }

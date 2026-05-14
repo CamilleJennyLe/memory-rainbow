@@ -2,16 +2,23 @@ import { useBoardStore } from "../board-store/board.store";
 import Card from "../../card/card.tsx";
 import "./game.css";
 import { Settings } from "lucide-react";
+import { useDeckStore } from "../../card-deck/card-deck-store/card-deck.store.ts";
 
 interface GameProps {
   showDeckConfig: () => void;
 }
 export function Game({ showDeckConfig: setShowDeckConfig }: GameProps) {
   const { board, numberOfMoves, newGame } = useBoardStore();
+  const { difficulty } = useDeckStore();
   return (
     <>
       <div className="actions">
-        <p>Nombre de coups: {numberOfMoves}</p>
+        <p>
+          Coups:{" "}
+          <span className="game-moves">
+            {numberOfMoves} / {difficulty}
+          </span>
+        </p>
         <button className="new-game-button" onClick={newGame}>
           Nouvelle partie
         </button>

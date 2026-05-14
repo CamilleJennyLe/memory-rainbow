@@ -43,6 +43,10 @@
   height: 20px;
 }
 
+.game-moves {
+  white-space: nowrap;
+}
+
 @media (orientation: portrait) {
   .memory-board {
     grid-template-columns: repeat(3, minmax(0, 1fr));

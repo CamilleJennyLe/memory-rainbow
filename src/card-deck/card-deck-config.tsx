@@ -3,13 +3,17 @@ import { useDeckStore } from "./card-deck-store/card-deck.store";
 import { useBoardStore } from "../board/board-store/board.store";
 import "./card-deck-config.css";
 
-export function CardDeckConfig() {
+interface CardDeckConfigProps {
+  hideDeckConfig: () => void;
+}
+export function CardDeckConfig({ hideDeckConfig }: CardDeckConfigProps) {
   const { config, setConfig } = useDeckStore();
   const [localConfig, setLocalConfig] = useState(config);
   const { newGame } = useBoardStore();
   function handleConfigChange() {
     setConfig(localConfig);
     newGame();
+    hideDeckConfig();
   }
   return (
     <div className="card-deck-config">

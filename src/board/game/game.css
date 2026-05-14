@@ -23,20 +23,24 @@
 .new-game-button {
   padding: 10px 20px;
   border-radius: 5px;
-  background: linear-gradient(
-    90deg,
-    red,
-    orange,
-    yellow,
-    #59ee59,
-    #57c4e8,
-    #b93ab9
-  );
+  background: var(--rainbow-background-color);
   color: black;
   border: none;
   cursor: pointer;
   font-weight: bold;
   font-size: 1.15rem;
+}
+
+.settings-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.15rem;
+}
+.settings-icon {
+  color: var(--secondary-color);
+  width: 20px;
+  height: 20px;
 }
 
 @media (orientation: portrait) {

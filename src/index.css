@@ -9,6 +9,15 @@ body,
   --primary-color: white;
   --secondary-color: black;
   --card-color: gray;
+  --rainbow-background-color: linear-gradient(
+    90deg,
+    red,
+    orange,
+    yellow,
+    #59ee59,
+    #57c4e8,
+    #b93ab9
+  );
 }
 
 body {

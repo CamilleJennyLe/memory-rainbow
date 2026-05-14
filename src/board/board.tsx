@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Card from "../card/card";
 import "./board.css";
-import { useBoardStore } from "./board.store";
+import { useBoardStore } from "./board-store/board.store";
 import Win from "./win/win";
 import { CardDeckConfig } from "../card-deck/card-deck-config";
 function Board() {

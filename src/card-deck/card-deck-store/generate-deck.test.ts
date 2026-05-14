@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { useDeckStore } from "./card-deck.store";
-import { catDeck, rainbowDeck } from "./card-deck";
-import { levelOne } from "./difficulty";
-import type { CardState } from "../board/card.types";
+import { catDeck, rainbowDeck } from "../card-deck";
+import { levelOne } from "../difficulty";
+import type { CardState } from "../../board/card.types";
 
 // Helper to reset zustand store state
 function resetDeckStore() {

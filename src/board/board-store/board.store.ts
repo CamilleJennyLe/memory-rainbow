@@ -1,7 +1,6 @@
 import { create } from "zustand";
-import { useDeckStore } from "../card-deck/card-deck.store";
-import type { CardState } from "./card.types";
-import { shuffleCards } from "./shuffle";
+import { useDeckStore } from "../../card-deck/card-deck-store/card-deck.store";
+import type { CardState } from "../card.types";
 
 interface BoardState {
   board: CardState[];
@@ -18,9 +17,8 @@ export const useBoardStore = create<BoardState>(
       newGame: () =>
         set(() => {
           const cardDeck = useDeckStore.getState().generateDeck();
-          const shuffled = shuffleCards(cardDeck);
           return {
-            board: [...shuffled],
+            board: [...cardDeck],
             numberOfMoves: 0,
           };
         }),

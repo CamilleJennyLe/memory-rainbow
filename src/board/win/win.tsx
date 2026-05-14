@@ -1,5 +1,5 @@
 import { getRandomFunFact } from "../../fun-facts";
-import { useBoardStore } from "../board.store";
+import { useBoardStore } from "../board-store/board.store";
 import "./win.css";
 
 function Win() {

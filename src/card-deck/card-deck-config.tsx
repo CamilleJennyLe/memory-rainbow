@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useDeckStore } from "./card-deck.store";
-import { useBoardStore } from "../board/board.store";
+import { useDeckStore } from "./card-deck-store/card-deck.store";
+import { useBoardStore } from "../board/board-store/board.store";
 import "./card-deck-config.css";
 
 export function CardDeckConfig() {

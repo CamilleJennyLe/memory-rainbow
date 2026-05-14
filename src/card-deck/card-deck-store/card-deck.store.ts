@@ -1,9 +1,10 @@
 import { create } from "zustand";
-import { catDeck, rainbowDeck } from "./card-deck";
-import type { DeckConfig, DeckState } from "./card-deck.type";
-import { levelOne, type Difficulty } from "./difficulty";
-import { getDeckConfig } from "../storage/card-deck-config";
-import { saveDeckConfig } from "../storage/card-deck-config";
+import { catDeck, rainbowDeck } from "../card-deck";
+import type { DeckConfig, DeckState } from "../card-deck.type";
+import { levelOne, type Difficulty } from "../difficulty";
+import { getDeckConfig } from "../../storage/card-deck-config";
+import { saveDeckConfig } from "../../storage/card-deck-config";
+import { shuffleCards } from "./shuffle";
 
 export const useDeckStore = create<DeckState>(() => ({
   config: getDeckConfig(),
@@ -17,7 +18,7 @@ export const useDeckStore = create<DeckState>(() => ({
     if (config.includeCats) {
       deck.push(...catDeck, ...catDeck);
     }
-    return deck;
+    return shuffleCards(deck);
   },
   setConfig: (config: DeckConfig) => {
     useDeckStore.setState({ config });

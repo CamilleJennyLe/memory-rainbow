@@ -13,18 +13,18 @@ export function Game({ showDeckConfig: setShowDeckConfig }: GameProps) {
   return (
     <>
       <div className="actions">
+        <button className="settings-button" onClick={() => setShowDeckConfig()}>
+          <Settings className="settings-icon" />
+        </button>
+        <button className="new-game-button" onClick={newGame}>
+          Rejouer
+        </button>
         <p>
-          Coups:
+          Coups:{" "}
           <span className="game-moves">
             {numberOfMoves} / {difficulty}
           </span>
         </p>
-        <button className="new-game-button" onClick={newGame}>
-          Rejouer
-        </button>
-        <button className="settings-button" onClick={() => setShowDeckConfig()}>
-          <Settings className="settings-icon" />
-        </button>
       </div>
       <div className="memory-board">
         {board.map((card, index) => (

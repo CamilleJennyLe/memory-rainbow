@@ -1,20 +1,9 @@
-export const red = "red";
-export const orange = "orange";
-export const yellow = "yellow";
-export const green = "green";
-export const blue = "blue";
-export const purple = "purple";
+import type { CardColor } from "../card/rainbow/rainbow.type";
+import type { CatClassName } from "../card/cats/cats.type";
 
-type CardColor =
-  | typeof red
-  | typeof orange
-  | typeof yellow
-  | typeof green
-  | typeof blue
-  | typeof purple;
-
+export type CardClassName = CardColor | CatClassName;
 export interface CardState {
-  color: CardColor;
+  cardClassName: CardClassName;
   flipped?: boolean;
   pairFound?: boolean;
 }

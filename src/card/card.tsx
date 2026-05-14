@@ -1,6 +1,5 @@
 import "./card.css";
-import { useBoardStore } from "../board/board.store";
-
+import { useBoardStore } from "../board/board-store/board.store";
 interface CardProps {
   index: number;
 }
@@ -9,7 +8,7 @@ function Card({ index }: CardProps) {
   const cardState = board[index];
   return (
     <div
-      className={`card ${cardState.flipped ? cardState.color : "card-back"}`}
+      className={`card ${cardState.flipped ? cardState.cardClassName : "card-back"}`}
       onClick={() => flipCard(index)}
     />
   );

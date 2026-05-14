@@ -1,38 +1,27 @@
-import { useEffect } from "react";
-import Card from "../card/card";
-import { getRandomFunFact } from "../fun-facts";
+import { useEffect, useState } from "react";
 import "./board.css";
-import { useBoardStore } from "./board.store";
+import { useBoardStore } from "./board-store/board.store";
+import Win from "./win/win";
+import { CardDeckConfig } from "../card-deck/card-deck-config";
+import { Game } from "./game/game";
 function Board() {
-  const { board, newGame, numberOfMoves } = useBoardStore();
+  const { board, newGame } = useBoardStore();
+  const [showDeckConfig, setShowDeckConfig] = useState(false);
   useEffect(() => {
     newGame();
-  }, []);
+  }, [newGame]);
   const isWin = board.every((card) => card.pairFound);
-  function closeOverlay() {
-    newGame();
+  if (showDeckConfig) {
+    return (
+      <div className="container">
+        <CardDeckConfig hideDeckConfig={() => setShowDeckConfig(false)} />
+      </div>
+    );
   }
   return (
     <div className="container">
-      <div className="actions">
-        <p>Number of moves: {numberOfMoves}</p>
-        <button className="new-game-button" onClick={newGame}>
-          New Game
-        </button>
-      </div>
-      <div className="memory-board">
-        {board.map((card, index) => (
-          <Card key={`${index}-${card.color}`} index={index} />
-        ))}
-      </div>
-      {isWin && (
-        <div className="overlay" onClick={closeOverlay}>
-          <div className="overlay-content">
-            <h1>Gagné!</h1>
-            <p>{getRandomFunFact()}</p>
-          </div>
-        </div>
-      )}
+      <Game showDeckConfig={() => setShowDeckConfig(true)} />
+      {isWin && <Win />}
     </div>
   );
 }

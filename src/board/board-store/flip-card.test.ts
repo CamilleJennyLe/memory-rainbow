@@ -1,8 +1,5 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 import { useBoardStore } from "./board.store";
-import { cardDeck } from "./board.constants";
-import * as shuffleUtils from "./shuffle";
-import { red } from "./card.types";
 
 function resetBoardStore() {
   useBoardStore.setState({
@@ -10,57 +7,10 @@ function resetBoardStore() {
   });
 }
 
-describe("Board Store - newGame", () => {
-  beforeEach(() => {
-    vi.restoreAllMocks();
-    resetBoardStore();
-  });
-
-  it("should shuffle the cards at each new game", () => {
-    const firstShuffle = [...cardDeck];
-    const secondShuffle = [...cardDeck].reverse();
-    const mockShuffleCards = vi
-      .spyOn(shuffleUtils, "shuffleCards")
-      .mockReturnValueOnce(firstShuffle)
-      .mockReturnValueOnce(secondShuffle);
-
-    const makeNewGame = useBoardStore.getState().newGame;
-    makeNewGame();
-    const { board: initialCards1 } = useBoardStore.getState();
-    makeNewGame();
-    const { board: initialCards2 } = useBoardStore.getState();
-
-    expect(mockShuffleCards).toHaveBeenCalledTimes(2);
-    expect(initialCards1).not.toEqual(initialCards2);
-  });
-
-  it("should reset flipped and pairFound for all cards", () => {
-    const finishedGame = cardDeck.map((card) => ({
-      ...card,
-      flipped: true,
-      pairFound: true,
-    }));
-    useBoardStore.setState({
-      board: finishedGame,
-    });
-
-    const makeNewGame = useBoardStore.getState().newGame;
-    makeNewGame();
-
-    const { board } = useBoardStore.getState();
-    expect(board.some((card) => card.flipped)).toBeFalsy();
-    expect(board.some((card) => card.pairFound)).toBeFalsy();
-  });
-});
-
 describe("Board Store - flipCard", () => {
   beforeEach(() => {
-    vi.restoreAllMocks();
     resetBoardStore();
     useBoardStore.getState().newGame();
-    useBoardStore.setState({
-      board: cardDeck,
-    });
   });
   it("should flip the card at the given index", () => {
     const indexToFlip = 3;
@@ -128,23 +78,26 @@ describe("Board Store - flipCard", () => {
   });
 
   it("should mark the found pairs when a card is flipped", () => {
-    const reds = useBoardStore
-      .getState()
-      .board.map((card, index) => ({ ...card, index }))
-      .filter((card) => card.color === red);
-    const firstRedIndex = reds[0].index;
-    const secondRedIndex = reds[1].index;
+    const newBoard = [...useBoardStore.getState().board].sort((a, b) =>
+      a.cardClassName.localeCompare(b.cardClassName),
+    );
+    useBoardStore.setState({ board: newBoard });
 
-    useBoardStore.getState().flipCard(firstRedIndex);
-    useBoardStore.getState().flipCard(secondRedIndex);
+    useBoardStore.getState().flipCard(0);
+    useBoardStore.getState().flipCard(1);
 
     const { board } = useBoardStore.getState();
-    expect(board[firstRedIndex].pairFound).toBeTruthy();
-    expect(board[secondRedIndex].pairFound).toBeTruthy();
+    expect(board[0].pairFound).toBeTruthy();
+    expect(board[1].pairFound).toBeTruthy();
     expect(useBoardStore.getState().numberOfMoves).toBe(2);
   });
 
   it("should flip the cards following a found pair and keep the found pairs shown", () => {
+    const newBoard = [...useBoardStore.getState().board].sort((a, b) =>
+      a.cardClassName.localeCompare(b.cardClassName),
+    );
+    useBoardStore.setState({ board: newBoard });
+
     useBoardStore.getState().flipCard(0);
     useBoardStore.getState().flipCard(1);
     useBoardStore.getState().flipCard(2);

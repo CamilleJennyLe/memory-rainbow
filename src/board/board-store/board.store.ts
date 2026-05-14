@@ -1,7 +1,6 @@
 import { create } from "zustand";
-import { shuffleCards } from "./shuffle";
-import { cardDeck } from "./board.constants";
-import type { CardState } from "./card.types";
+import { useDeckStore } from "../../card-deck/card-deck-store/card-deck.store";
+import type { CardState } from "../card.types";
 
 interface BoardState {
   board: CardState[];
@@ -17,9 +16,9 @@ export const useBoardStore = create<BoardState>(
       numberOfMoves: 0,
       newGame: () =>
         set(() => {
-          const shuffled = shuffleCards(cardDeck);
+          const cardDeck = useDeckStore.getState().generateDeck();
           return {
-            board: [...shuffled],
+            board: [...cardDeck],
             numberOfMoves: 0,
           };
         }),
@@ -100,7 +99,7 @@ function updateBoardWithFoundPairIfAny(board: CardState[]): CardState[] {
   const shownNotFoundCards = getShownNotFoundCards(board);
   if (shownNotFoundCards.length === 2) {
     const [first, second] = shownNotFoundCards;
-    if (first.card.color === second.card.color) {
+    if (first.card.cardClassName === second.card.cardClassName) {
       return board.map((card, index) =>
         index === first.index || index === second.index
           ? { ...card, pairFound: true }

@@ -1,3 +1,6 @@
+@import "./rainbow/rainbow.css";
+@import "./cats/cats.css";
+
 .card {
   box-sizing: border-box;
   width: 100%;
@@ -10,29 +13,5 @@
 }
 
 .card-back {
-  background-color: gray !important;
-}
-
-.red {
-  background-color: red;
-}
-
-.orange {
-  background-color: orange;
-}
-
-.yellow {
-  background-color: yellow;
-}
-
-.green {
-  background-color: green;
-}
-
-.blue {
-  background-color: blue;
-}
-
-.purple {
-  background-color: purple;
+  background-color: var(--card-color) !important;
 }

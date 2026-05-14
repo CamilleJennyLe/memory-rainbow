@@ -1,0 +1,49 @@
+.ventre {
+  background-image: url("../../assets/cats/chat_blanc_ventre.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: var(--secondary-color);
+}
+.rond {
+  background-image: url("../../assets/cats/chat_blond_rond.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: var(--secondary-color);
+}
+.brioche {
+  background-image: url("../../assets/cats/chat_brioche.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: var(--secondary-color);
+}
+.allonge__cote {
+  background-image: url("../../assets/cats/chat_british_allongé_coté.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: var(--secondary-color);
+}
+.toilette__ventre {
+  background-image: url("../../assets/cats/chat_calico_toilette_ventre.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: var(--secondary-color);
+}
+.toilette__patte {
+  background-image: url("../../assets/cats/chat_noir_toilette.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: var(--secondary-color);
+}
+.feule {
+  background-image: url("../../assets/cats/chat_zoro_feule.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: var(--secondary-color);
+}

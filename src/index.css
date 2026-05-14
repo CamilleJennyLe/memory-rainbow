@@ -5,18 +5,38 @@ body,
   padding: 0;
 }
 
+:root {
+  --primary-color: white;
+  --secondary-color: black;
+  --card-color: gray;
+  --rainbow-background-color: linear-gradient(
+    90deg,
+    red,
+    orange,
+    yellow,
+    #59ee59,
+    #57c4e8,
+    #b93ab9
+  );
+}
+
+body {
+  background: var(--primary-color);
+  color: var(--secondary-color);
+}
+
 /* Mode sombre */
 @media (prefers-color-scheme: dark) {
   body {
-    background: #121212;
-    color: #ffffff;
+    --primary-color: black;
+    --secondary-color: white;
   }
 }
 
 /* Mode clair */
 @media (prefers-color-scheme: light) {
   body {
-    background: #ffffff;
-    color: #000000;
+    --primary-color: white;
+    --secondary-color: black;
   }
 }

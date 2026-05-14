@@ -8,6 +8,7 @@ body,
 :root {
   --primary-color: white;
   --secondary-color: black;
+  --card-color: gray;
 }
 
 body {

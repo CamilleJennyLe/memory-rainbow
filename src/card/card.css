@@ -13,5 +13,5 @@
 }
 
 .card-back {
-  background-color: gray !important;
+  background-color: var(--card-color) !important;
 }

@@ -15,6 +15,7 @@ export function CardDeckConfig({ hideDeckConfig }: CardDeckConfigProps) {
     newGame();
     hideDeckConfig();
   }
+  const anyDeckSelected = localConfig.includeRainbow || localConfig.includeCats;
   return (
     <div className="card-deck-config">
       <h3>Configuration du deck</h3>
@@ -45,7 +46,11 @@ export function CardDeckConfig({ hideDeckConfig }: CardDeckConfigProps) {
         />
         Cartes de chats
       </label>
-      <button onClick={handleConfigChange} className="card-deck-config-button">
+      <button
+        onClick={handleConfigChange}
+        className="card-deck-config-button"
+        disabled={!anyDeckSelected}
+      >
         Enregistrer
       </button>
     </div>

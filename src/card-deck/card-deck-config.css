@@ -13,6 +13,12 @@
   font-weight: bold;
   font-size: 1.15rem;
 }
+
+.card-deck-config-button:disabled {
+  background: #e1e1e1;
+  color: gray;
+  cursor: not-allowed;
+}
 .card-deck-config-checkbox {
   appearance: none;
   margin-right: 0.5rem;
@@ -20,7 +26,7 @@
   height: 20px;
   border-radius: 4px;
   border: 2px solid var(--secondary-color);
-  background: var(--secondary-color);
+  background: var(--primary-color);
   vertical-align: middle;
   position: relative;
   cursor: pointer;

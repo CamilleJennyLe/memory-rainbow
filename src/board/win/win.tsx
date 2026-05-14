@@ -10,7 +10,7 @@ function Win() {
   return (
     <div className="overlay" onClick={closeOverlay}>
       <div className="overlay-content">
-        <h1>Gagné!</h1>
+        <h1>Bravo!</h1>
         <p>{getRandomFunFact()}</p>
       </div>
     </div>

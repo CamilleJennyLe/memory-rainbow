@@ -1,6 +1,5 @@
 import "./card.css";
 import { useBoardStore } from "../board/board.store";
-import "./rainbow/rainbow.css";
 interface CardProps {
   index: number;
 }

@@ -1,3 +1,6 @@
+@import "./rainbow/rainbow.css";
+@import "./cats/cats.css";
+
 .card {
   box-sizing: border-box;
   width: 100%;

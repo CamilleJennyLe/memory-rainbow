@@ -1,31 +1,23 @@
-import { useBoardStore } from "../board-store/board.store";
 import Card from "../../card/card.tsx";
+import { useDevice } from "../../utils/hooks/use-device.ts";
+import { useBoardStore } from "../board-store/board.store";
+import { DesktopHeader } from "./desktop/header.tsx";
 import "./game.css";
-import { Settings } from "lucide-react";
-import { useDeckStore } from "../../card-deck/card-deck-store/card-deck.store.ts";
+import { MobileHeader } from "./mobile/header.tsx";
 
 interface GameProps {
   showDeckConfig: () => void;
 }
 export function Game({ showDeckConfig: setShowDeckConfig }: GameProps) {
-  const { board, numberOfMoves, newGame } = useBoardStore();
-  const { difficulty } = useDeckStore();
+  const { board } = useBoardStore();
+  const { isDesktop } = useDevice();
   return (
     <>
-      <div className="actions">
-        <button className="settings-button" onClick={() => setShowDeckConfig()}>
-          <Settings className="settings-icon" />
-        </button>
-        <button className="new-game-button" onClick={newGame}>
-          Rejouer
-        </button>
-        <p>
-          Coups:{" "}
-          <span className="game-moves">
-            {numberOfMoves} / {difficulty}
-          </span>
-        </p>
-      </div>
+      {isDesktop ? (
+        <DesktopHeader setShowDeckConfig={setShowDeckConfig} />
+      ) : (
+        <MobileHeader setShowDeckConfig={setShowDeckConfig} />
+      )}
       <div className="memory-board">
         {board.map((card, index) => (
           <Card key={`${index}-${card.cardClassName}`} index={index} />

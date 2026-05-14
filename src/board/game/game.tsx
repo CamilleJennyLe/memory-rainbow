@@ -14,13 +14,13 @@ export function Game({ showDeckConfig: setShowDeckConfig }: GameProps) {
     <>
       <div className="actions">
         <p>
-          Coups:{" "}
+          Coups:
           <span className="game-moves">
             {numberOfMoves} / {difficulty}
           </span>
         </p>
         <button className="new-game-button" onClick={newGame}>
-          Nouvelle partie
+          Rejouer
         </button>
         <button className="settings-button" onClick={() => setShowDeckConfig()}>
           <Settings className="settings-icon" />

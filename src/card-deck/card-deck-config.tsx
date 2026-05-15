@@ -18,7 +18,7 @@ export function CardDeckConfig({ hideDeckConfig }: CardDeckConfigProps) {
   const anyDeckSelected = localConfig.includeRainbow || localConfig.includeCats;
   return (
     <div className="card-deck-config">
-      <h3>Configuration du deck</h3>
+      <h3>Configuration du jeu de cartes</h3>
       <label>
         <input
           type="checkbox"

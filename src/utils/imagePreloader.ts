@@ -5,22 +5,12 @@ import allongeCoteImage from "../assets/cats/chat_british_allongé_coté.png";
 import toiletteVentreImage from "../assets/cats/chat_calico_toilette_ventre.png";
 import toilettePatteImage from "../assets/cats/chat_noir_toilette.png";
 import feuleImage from "../assets/cats/chat_zoro_feule.png";
-import { catDeck } from "../card-deck/card-deck";
+import chatonsImage from "../assets/cats/chatons.png";
+import chatCartonImage from "../assets/cats/chat_carton.png";
+import chatPanierImage from "../assets/cats/chat_panier.png";
+import chatPouletRotiImage from "../assets/cats/chat_poulet_roti.png";
+import mamanChatonsImage from "../assets/cats/maman_chatons.png";
 import { useDeckStore } from "../card-deck/card-deck-store/card-deck.store";
-
-const catClassToImage: Record<string, string> = {
-  ventre: ventreImage,
-  rond: rondImage,
-  brioche: briocheImage,
-  allonge__cote: allongeCoteImage,
-  toilette__ventre: toiletteVentreImage,
-  toilette__patte: toilettePatteImage,
-  feule: feuleImage,
-};
-
-export function getCatImageUrl(className: string): string | undefined {
-  return catClassToImage[className];
-}
 
 export function preloadImages(urls: string[]): void {
   for (const url of urls) {
@@ -32,11 +22,20 @@ export function preloadImages(urls: string[]): void {
 export function preloadCatDeck(): void {
   const { config } = useDeckStore.getState();
   if (!config.includeCats) return;
-  const urls: string[] = [];
-  for (const card of catDeck) {
-    const url = getCatImageUrl(card.cardClassName);
-    if (url) urls.push(url);
-  }
+  const urls = [
+    ventreImage,
+    rondImage,
+    briocheImage,
+    allongeCoteImage,
+    toiletteVentreImage,
+    toilettePatteImage,
+    feuleImage,
+    chatonsImage,
+    chatCartonImage,
+    chatPanierImage,
+    chatPouletRotiImage,
+    mamanChatonsImage,
+  ];
   preloadImages(urls);
 }
 

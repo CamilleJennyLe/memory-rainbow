@@ -26,7 +26,6 @@ Would be nice if at some point I can discover React testing library in there...
 
 ## Features
 
-More cat cards
 Add cat fun facts
 
 Record display

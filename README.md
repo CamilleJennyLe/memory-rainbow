@@ -36,8 +36,10 @@ Memory of sounds
 Extension: custom
 
 Stats/Gallery
-Unlocked fun facts
-Unblocked cards per extension
+number of games played
+best and worst records per difficulty
+the facts
+the cards
 
 Multiplayer?
 

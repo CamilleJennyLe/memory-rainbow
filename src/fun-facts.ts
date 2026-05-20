@@ -32,20 +32,16 @@ export function getRandomFunFact() {
 }
 
 const catFunFacts = [
-  "Les chats ont une mémoire à court terme d’environ 16 heures, cela leur permet de se souvenir d’événements récents avec précision..",
-  "Les chats peuvent se souvenir de personnes, d’animaux et de lieux pendant des années. Ils reconnaissent notamment : leur humain, leur maison, des expériences marquantes (positives ou négatives)",
-  "Leur mémoire est très liée aux émotions. Une mauvaise expérience (peur, douleur) sera retenue beaucoup plus durablement qu’un événement neutre.",
-  "Les chats utilisent une mémoire associative : bruit du sachet = nourriture, bruit de la caisse de transport = vétérinaire",
-  "Les chats ont une excellente mémoire des habitudes et horaires : heure du repas, moment du câlin, routines du propriétaire",
-  "Contrairement aux humains, les chats retiennent surtout : ce qui est utile pour eux, ce qui les concerne directement. Ils ignorent volontairement ce qui ne les intéresse pas.",
-  "Grâce à leur mémoire spatiale, les chats peuvent : mémoriser leur territoire, retrouver leur maison sur de longues distances",
-  "Les chats gardent une carte mentale de leur environnement : cachettes, sources de nourriture, zones “dangereuses”",
-  "Des études montrent que les chats peuvent : reconnaître la voix de leur propriétaire, réagir différemment à des inconnus",
-  "Une seule mauvaise expérience peut créer : une peur durable, une aversion (objet, lieu, personne)",
-  "Les chats filtrent très bien l’information :ils gardent les événements utiles à leur survie,ils oublient le reste",
-  "Les chats savent reconnaître leur nom… mais ne répondent pas toujours. Ce n’est pas un problème de mémoire, mais de motivation.",
-  "Les jeunes chats ont une mémoire très plastique : apprentissage rapide, forte capacité d’adaptation",
-  "Une des cartes chats a paraît surnaturelle... avez-vous deviné laquelle ?",
+  "Les chats retiennent des événements pendant des années, surtout ceux liés à la nourriture, aux dangers et… aux humains qui les traitent bien (ou mal). Ils ne sont pas rancuniers, mais ils n’oublient pas.",
+  "Un chat retiendra plus facilement comment ouvrir une porte que où est rangé son jouet. C’est littéralement un cerveau optimisé pour les bêtises.",
+  "Les chats reconnaissent les humains par la voix, l’odeur et les routines, pas par le visage. Donc si ton chat te regarde comme un inconnu quand tu changes de parfum, c’est normal.",
+  "Un bruit de sac plastique qui les a surpris une fois ? Ils éviteront cet endroit pendant des semaines. Leur cerveau est câblé pour la survie, pas pour la dignité.",
+  "Les chats n’ont pas de montre, mais ils ont une mémoire temporelle basée sur la lumière, les routines, et les micro-habitudes humaines. C’est pour ça qu’ils savent à la minute près quand c’est l’heure de manger.",
+  "Un chat peut apprendre à ouvrir une poignée, activer un robinet, ou comprendre comment fonctionne un distributeur… juste en te regardant une ou deux fois. Et ensuite, c’est fini pour ta tranquillité.",
+  "Comme les humains, les chats consolident leurs souvenirs pendant le sommeil paradoxal. Donc oui : ton chat rêve probablement de toi… ou de chasser un pigeon géant.",
+  "Les chats reconnaissent l’odeur et la voix d’un ancien humain après de longues séparations. C’est l’un des rares points où leur mémoire émotionnelle est très forte.",
+  "Ils construisent une carte mentale de leur territoire : obstacles, hauteurs, chemins rapides, zones sûres. C’est pour ça qu’ils peuvent se déplacer dans le noir sans rien renverser… sauf quand ils veulent attirer ton attention.",
+  "Un chat stressé retient moins bien. Un chat en confiance retient beaucoup mieux. C’est scientifiquement prouvé : les câlins améliorent la mémoire féline.",
 ];
 
 const aquaticFunFacts = [

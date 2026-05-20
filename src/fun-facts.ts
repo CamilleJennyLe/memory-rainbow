@@ -1,4 +1,6 @@
-export const funFacts = [
+import { useDeckStore } from "./card-deck/card-deck-store/card-deck.store";
+
+const funFacts = [
   "La mémoire n’est pas un “enregistreur” : chaque souvenir est une reconstruction, pas une copie fidèle de la réalité.",
   "Se souvenir modifie le souvenir : chaque rappel altère légèrement la mémoire, un peu comme une sauvegarde écrasée.",
   "Oublier est normal et utile : le cerveau élimine des informations pour éviter la saturation.",
@@ -41,7 +43,6 @@ export const funFacts = [
   "Les souvenirs anciens semblent plus clairs qu’ils ne l’étaient réellement.",
   "Sans attention, il n’y a presque pas de mémoire.",
   "Le multitâche réduit fortement la mémorisation.",
-  "Relire passivement est peu efficace.",
   "Se tester soi-même améliore la mémoire.",
   "Espacer les révisions est plus efficace que bachoter.",
   "Expliquer à quelqu’un renforce la mémoire.",
@@ -53,7 +54,6 @@ export const funFacts = [
   "La mémoire des noms propres est la plus fragile.",
   "Les souvenirs émotionnels résistent mieux au vieillissement.",
   "Les personnes âgées apprennent encore très bien.",
-  "La vitesse diminue avant la capacité.",
   "La mémoire procédurale (mémoire des gestes ou habitudes comme faire du vélo, écrire, conduire) reste souvent intacte, même quand d’autres types de mémoire déclinent.",
   "Les jeunes adultes atteignent un pic de mémoire épisodique, c’est-à-dire la capacité à se souvenir d’événements vécus avec leurs contextes (où, quand, avec qui).",
   "Les enfants ont une excellente mémoire implicite (celle qui permet d’apprendre sans en avoir conscience, comme acquérir des règles de grammaire ou reconnaître des motifs).",
@@ -82,5 +82,26 @@ export const funFacts = [
 ];
 
 export function getRandomFunFact() {
-  return funFacts[Math.floor(Math.random() * funFacts.length)];
+  const pool = [...funFacts];
+  const { config } = useDeckStore.getState();
+  if (config.includeCats) {
+    pool.push(...catFunFacts);
+  }
+  return pool[Math.floor(Math.random() * pool.length)];
 }
+
+const catFunFacts = [
+  "Les chats ont une mémoire à court terme d’environ 16 heures, cela leur permet de se souvenir d’événements récents avec précision..",
+  "Les chats peuvent se souvenir de personnes, d’animaux et de lieux pendant des années. Ils reconnaissent notamment : leur humain, leur maison, des expériences marquantes (positives ou négatives)",
+  "Leur mémoire est très liée aux émotions. Une mauvaise expérience (peur, douleur) sera retenue beaucoup plus durablement qu’un événement neutre.",
+  "Les chats utilisent une mémoire associative : bruit du sachet = nourriture, bruit de la caisse de transport = vétérinaire",
+  "Les chats ont une excellente mémoire des habitudes et horaires : heure du repas, moment du câlin, routines du propriétaire",
+  "Contrairement aux humains, les chats retiennent surtout : ce qui est utile pour eux, ce qui les concerne directement. Ils ignorent volontairement ce qui ne les intéresse pas.",
+  "Grâce à leur mémoire spatiale, les chats peuvent : mémoriser leur territoire, retrouver leur maison sur de longues distances",
+  "Les chats gardent une carte mentale de leur environnement : cachettes, sources de nourriture, zones “dangereuses”",
+  "Des études montrent que les chats peuvent : reconnaître la voix de leur propriétaire, réagir différemment à des inconnus",
+  "Une seule mauvaise expérience peut créer : une peur durable, une aversion (objet, lieu, personne)",
+  "Les chats filtrent très bien l’information :ils gardent les événements utiles à leur survie,ils oublient le reste",
+  "Les chats savent reconnaître leur nom… mais ne répondent pas toujours. Ce n’est pas un problème de mémoire, mais de motivation.",
+  "Les jeunes chats ont une mémoire très plastique : apprentissage rapide, forte capacité d’adaptation",
+];

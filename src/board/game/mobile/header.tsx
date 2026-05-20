@@ -1,5 +1,5 @@
 import { Settings } from "lucide-react";
-import { Moves } from "../moves";
+import { ShortStatistics } from "../short-statistics";
 import { Replay } from "../replay";
 import "../game.css";
 
@@ -13,7 +13,7 @@ export function MobileHeader({ setShowDeckConfig }: MobileHeaderProps) {
         <Settings className="settings-icon" />
       </button>
       <Replay />
-      <Moves />
+      <ShortStatistics />
     </div>
   );
 }

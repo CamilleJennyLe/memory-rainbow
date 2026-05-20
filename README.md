@@ -26,14 +26,11 @@ Would be nice if at some point I can discover React testing library in there...
 
 ## Features
 
-Add cat fun facts
-
 Record display
 
 Difficulty system (level one = 12 cards, add 20 cards 4*5), difficulty choices should adapt to the number of available cards (card deck config)
 Add more difficulties: 30 (6*5), 42 (6\*7)
 
-Extension: ocean
 Extension: farm
 Memory of sounds
 Extension: custom

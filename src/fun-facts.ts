@@ -87,6 +87,9 @@ export function getRandomFunFact() {
   if (config.includeCats) {
     pool.push(...catFunFacts);
   }
+  if (config.includeAquatic) {
+    pool.push(...aquaticFunFacts);
+  }
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
@@ -104,4 +107,28 @@ const catFunFacts = [
   "Les chats filtrent très bien l’information :ils gardent les événements utiles à leur survie,ils oublient le reste",
   "Les chats savent reconnaître leur nom… mais ne répondent pas toujours. Ce n’est pas un problème de mémoire, mais de motivation.",
   "Les jeunes chats ont une mémoire très plastique : apprentissage rapide, forte capacité d’adaptation",
+  "Une des cartes chats a paraît surnaturelle... avez-vous deviné laquelle ?",
+];
+
+const aquaticFunFacts = [
+  "Le mythe des “3 secondes de mémoire” est totalement faux. Les poissons rouges peuvent se souvenir d’un événement pendant plusieurs mois.",
+  "Les poissons rouges peuvent apprendre à reconnaître leur humain, distinguer des formes, des couleurs, et même venir quand on les appelle (conditionnement sonore).",
+  "Les poissons-archers, ceux qui tirent des jets d’eau pour faire tomber des insectes, peuvent reconnaître des visages humains avec une précision étonnante.",
+  "Les labres nettoyeurs (petits poissons de récif) se souviennent pendant au moins 24 heures des clients qu’ils ont “arnaqués” (en mordillant au lieu de nettoyer). Ils évitent ensuite ces clients pour ne pas perdre leur réputation.",
+  "Les saumons mémorisent l’odeur exacte de leur rivière natale et peuvent la retrouver des années plus tard, après des milliers de kilomètres.",
+  "Les poulpes ont une mémoire à court et long terme, et peuvent résoudre des puzzles, ouvrir des bocaux, et même se souvenir de la solution plusieurs jours plus tard.",
+  "Ils reconnaissent les humains individuellement et peuvent aimer ou détester certains soigneurs.",
+  "Un poulpe peut apprendre en observant un autre poulpe — un comportement rare chez les animaux.",
+  "Leur mémoire est distribuée : deux tiers de leurs neurones sont dans leurs bras, qui peuvent apprendre des choses indépendamment du cerveau central.",
+  "Les dauphins ont la plus longue mémoire sociale connue chez les animaux : ils peuvent reconnaître le “sifflement signature” d’un ancien compagnon 20 ans plus tard.",
+  "Ils se souviennent des alliances, des conflits, et des individus fiables ou non — un vrai Game of Thrones sous-marin.",
+  "Les requins peuvent mémoriser des routes, des zones de chasse et des signaux visuels pendant des semaines.",
+  "Certains requins de récif apprennent à reconnaître des plongeurs spécifiques et reviennent vers eux régulièrement.",
+  "Les coquillages n’ont pas de cerveau, donc pas de mémoire au sens classique.",
+  "Les escargots de mer (Aplysie) peuvent apprendre à associer un stimulus à une récompense ou une punition. Leur mémoire peut durer des jours, malgré un système nerveux minuscule.",
+  "Les huîtres et moules n’ont pas de mémoire cognitive, mais elles ont une mémoire biologique : elles ajustent leur rythme d’ouverture/fermeture en fonction de cycles lumineux ou de marées passées.",
+  "Les crabes peuvent se souvenir d’un danger pendant au moins 24 heures et modifier leur comportement.",
+  "Les écrevisses montrent des réactions proches de l’anxiété après un stress, et leur mémoire du danger influence leur comportement futur.",
+  "Des études montrent que certains poissons peuvent distinguer Bach de Stravinsky, et s’en souvenir.",
+  "Certains poissons apprennent à associer une mélodie à un repas, et reviennent quand on rejoue la musique.",
 ];

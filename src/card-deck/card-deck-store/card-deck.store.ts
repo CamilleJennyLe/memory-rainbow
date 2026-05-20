@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { catDeck, rainbowDeck } from "../card-deck";
+import { aquaticDeck, catDeck, rainbowDeck } from "../card-deck";
 import type { DeckConfig, DeckState } from "../card-deck.type";
 import { levelOne, type Difficulty } from "../difficulty";
 import { getDeckConfig } from "../../storage/card-deck-config";
@@ -17,6 +17,9 @@ export const useDeckStore = create<DeckState>(() => ({
     }
     if (config.includeCats) {
       deck.push(...catDeck);
+    }
+    if (config.includeAquatic) {
+      deck.push(...aquaticDeck);
     }
     const shuffledDeck = shuffleCards(deck);
     const difficulty = useDeckStore.getState().difficulty;

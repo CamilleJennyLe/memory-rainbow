@@ -12,9 +12,9 @@ export function getDeckConfig(): DeckConfig {
     const config = localStorage.getItem("deck-config");
     return config
       ? JSON.parse(config)
-      : { includeRainbow: true, includeCats: false };
+      : { includeRainbow: true, includeCats: false, includeAquatic: false };
   } catch (error) {
     console.error("Failed to get card deck config from localStorage:", error);
-    return { includeRainbow: true, includeCats: false };
+    return { includeRainbow: true, includeCats: false, includeAquatic: false };
   }
 }

@@ -1,5 +1,6 @@
 @import "./rainbow/rainbow.css";
 @import "./cats/cats.css";
+@import "./aquatic/aquatic.css";
 
 .card {
   box-sizing: border-box;

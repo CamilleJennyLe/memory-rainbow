@@ -15,7 +15,10 @@ export function CardDeckConfig({ hideDeckConfig }: CardDeckConfigProps) {
     newGame();
     hideDeckConfig();
   }
-  const anyDeckSelected = localConfig.includeRainbow || localConfig.includeCats;
+  const anyDeckSelected =
+    localConfig.includeRainbow ||
+    localConfig.includeCats ||
+    localConfig.includeAquatic;
   return (
     <div className="card-deck-config">
       <h3>Configuration du jeu de cartes</h3>
@@ -44,7 +47,19 @@ export function CardDeckConfig({ hideDeckConfig }: CardDeckConfigProps) {
           }
           className="card-deck-config-checkbox"
         />
-        Cartes de chats
+        Cartes chats
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          name="includeAquatic"
+          checked={localConfig.includeAquatic}
+          onChange={(e) =>
+            setLocalConfig({ ...localConfig, includeAquatic: e.target.checked })
+          }
+          className="card-deck-config-checkbox"
+        />
+        Cartes aquatiques
       </label>
       <button
         onClick={handleConfigChange}

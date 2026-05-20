@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import { useDeckStore } from "./card-deck.store";
-import { catDeck, rainbowDeck } from "../card-deck";
+import { aquaticDeck, catDeck, rainbowDeck } from "../card-deck";
 import { levelOne } from "../difficulty";
 import type { CardState } from "../../board/card.types";
 import * as cardDeckModule from "../card-deck";
@@ -11,6 +11,7 @@ function resetDeckStore() {
     config: {
       includeRainbow: true,
       includeCats: false,
+      includeAquatic: false,
     },
     difficulty: levelOne,
   });
@@ -27,6 +28,7 @@ describe("Deck Store - generateDeck", () => {
       config: {
         includeRainbow: true,
         includeCats: false,
+        includeAquatic: false,
       },
     });
     const generateDeck = useDeckStore.getState().generateDeck;
@@ -39,6 +41,7 @@ describe("Deck Store - generateDeck", () => {
       config: {
         includeRainbow: false,
         includeCats: true,
+        includeAquatic: false,
       },
     });
     const generateDeck = useDeckStore.getState().generateDeck;
@@ -47,11 +50,26 @@ describe("Deck Store - generateDeck", () => {
     expectDeckHasAllCardsTwice(catDeck, generatedDeck);
   });
 
+  it("should generate only aquatic cards when only aquatic deck is included", () => {
+    useDeckStore.setState({
+      config: {
+        includeRainbow: false,
+        includeCats: false,
+        includeAquatic: true,
+      },
+    });
+    const generateDeck = useDeckStore.getState().generateDeck;
+    const generatedDeck = generateDeck();
+
+    expectDeckHasAllCardsTwice(aquaticDeck, generatedDeck);
+  });
+
   it("should use the two selected decks", () => {
     useDeckStore.setState({
       config: {
         includeRainbow: true,
         includeCats: true,
+        includeAquatic: false,
       },
       difficulty: levelOne,
     });

@@ -15,7 +15,6 @@ function Board() {
   }, [newGame]);
   useEffect(() => {
     preloadAllDecks();
-    console.log("config fire");
   }, [config]);
   const isWin = board.every((card) => card.pairFound);
   if (showDeckConfig) {

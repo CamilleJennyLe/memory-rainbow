@@ -45,5 +45,4 @@ Multiplayer?
 
 ## Technical
 
-Refactor and make homogen: buttons, checkbox
-Add routing wiht react-router
+Add routing with react-router

@@ -8,12 +8,25 @@ export function saveStatistics(statistics: Statistics) {
   }
 }
 
+const emptyStatistics: Statistics = { gamesPlayed: 0, scores: [] };
+
+function normalizeStatistics(parsed: unknown): Statistics {
+  if (!parsed || typeof parsed !== "object") {
+    return emptyStatistics;
+  }
+  const { gamesPlayed, scores } = parsed as Partial<Statistics>;
+  return {
+    gamesPlayed: typeof gamesPlayed === "number" ? gamesPlayed : 0,
+    scores: Array.isArray(scores) ? scores : [],
+  };
+}
+
 export function getStatistics(): Statistics {
   try {
     const stats = localStorage.getItem("statistics");
-    return stats ? JSON.parse(stats) : { gamesPlayed: 0, records: [] };
+    return stats ? normalizeStatistics(JSON.parse(stats)) : emptyStatistics;
   } catch (error) {
     console.error("Failed to get statistics from localStorage:", error);
-    return { gamesPlayed: 0, records: [] };
+    return emptyStatistics;
   }
 }

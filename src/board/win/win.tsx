@@ -1,13 +1,13 @@
 import { getRandomFunFact } from "../../fun-facts";
-import { updateStatistics } from "../../statistics/statistics";
+import { useRecordStore } from "../../statistics/store/statistics.store";
 import { useBoardStore } from "../board-store/board.store";
 import "./win.css";
 
 function Win() {
   const { newGame } = useBoardStore();
   function closeOverlay() {
+    useRecordStore.getState().updateStatistics();
     newGame();
-    updateStatistics();
   }
   return (
     <div className="overlay" onClick={closeOverlay}>

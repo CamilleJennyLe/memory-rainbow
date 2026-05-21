@@ -1,11 +1,11 @@
 import type { Difficulty } from "../card-deck/difficulty";
 
-export interface Record {
+export interface Score {
   difficulty: Difficulty;
-  bestScore: number;
-  worstScore: number;
+  bestScore?: number;
+  worstScore?: number;
 }
 export interface Statistics {
   gamesPlayed: number;
-  records: Record[];
+  scores: Score[];
 }

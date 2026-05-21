@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import type { AquaticClassName } from "../card/aquatic/aquatic.type";
+import type { AquaticClassName } from "../card/aquatic/aquatic";
 import type { CardColor } from "../card/rainbow/rainbow.type";
 import type { CatClassName } from "../card/cats/cats.type";
 

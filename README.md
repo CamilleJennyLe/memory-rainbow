@@ -31,6 +31,7 @@ Record display
 Difficulty system (level one = 12 cards, add 20 cards 4*5), difficulty choices should adapt to the number of available cards (card deck config)
 Add more difficulties: 30 (6*5), 42 (6\*7)
 
+Cats -> domestic (cats, dogs, fish, hamster, bunny, ...)
 Extension: farm
 Memory of sounds
 Extension: custom
@@ -45,4 +46,4 @@ Multiplayer?
 
 ## Technical
 
-Add routing with react-router
+all cleared up for now!

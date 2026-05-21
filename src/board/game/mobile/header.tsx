@@ -1,17 +1,15 @@
 import { Settings } from "lucide-react";
+import { Link } from "react-router-dom";
 import { ShortStatistics } from "../short-statistics";
 import { Replay } from "../replay";
 import "../game.css";
 
-interface MobileHeaderProps {
-  setShowDeckConfig: () => void;
-}
-export function MobileHeader({ setShowDeckConfig }: MobileHeaderProps) {
+export function MobileHeader() {
   return (
     <div className="actions">
-      <button className="settings-button" onClick={() => setShowDeckConfig()}>
+      <Link to="/config" className="settings-button">
         <Settings className="settings-icon" />
-      </button>
+      </Link>
       <Replay />
       <ShortStatistics />
     </div>

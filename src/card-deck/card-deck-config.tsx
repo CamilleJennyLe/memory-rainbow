@@ -1,21 +1,20 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDeckStore } from "./card-deck-store/card-deck.store";
 import { useBoardStore } from "../board/board-store/board.store";
 import { Checkbox } from "../common/checkbox/checkbox";
 import { RainbowButton } from "../common/rainbow-button/rainbow-button";
 import "./card-deck-config.css";
 
-interface CardDeckConfigProps {
-  hideDeckConfig: () => void;
-}
-export function CardDeckConfig({ hideDeckConfig }: CardDeckConfigProps) {
+export function CardDeckConfig() {
+  const navigate = useNavigate();
   const { config, setConfig } = useDeckStore();
   const [localConfig, setLocalConfig] = useState(config);
   const { newGame } = useBoardStore();
   function handleConfigChange() {
     setConfig(localConfig);
     newGame();
-    hideDeckConfig();
+    navigate("/");
   }
   const anyDeckSelected =
     localConfig.includeRainbow ||

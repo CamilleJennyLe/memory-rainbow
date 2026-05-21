@@ -25,6 +25,8 @@
   border: none;
   cursor: pointer;
   font-size: 1.15rem;
+  text-decoration: none;
+  display: inline-flex;
 }
 .settings-icon {
   color: var(--secondary-color);

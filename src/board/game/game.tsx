@@ -5,19 +5,12 @@ import { DesktopHeader } from "./desktop/header.tsx";
 import "./game.css";
 import { MobileHeader } from "./mobile/header.tsx";
 
-interface GameProps {
-  showDeckConfig: () => void;
-}
-export function Game({ showDeckConfig: setShowDeckConfig }: GameProps) {
+export function Game() {
   const { board } = useBoardStore();
   const { isDesktop } = useDevice();
   return (
     <>
-      {isDesktop ? (
-        <DesktopHeader setShowDeckConfig={setShowDeckConfig} />
-      ) : (
-        <MobileHeader setShowDeckConfig={setShowDeckConfig} />
-      )}
+      {isDesktop ? <DesktopHeader /> : <MobileHeader />}
       <div className="memory-board">
         {board.map((card, index) => (
           <Card key={`${index}-${card.cardClassName}`} index={index} />

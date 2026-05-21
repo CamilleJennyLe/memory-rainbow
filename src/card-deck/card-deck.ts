@@ -1,6 +1,6 @@
 import type { CardState } from "../board/card.types";
 import { aquaticClassNames } from "../card/aquatic/aquatic.type";
-import { catClassNames } from "../card/cats/cats.type";
+import { catClassNames } from "../card/cats/cats";
 import {
   blue,
   green,

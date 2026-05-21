@@ -22,10 +22,16 @@ const baseStatistics: Statistics = {
   ],
 };
 
+let storedStatistics: Statistics = baseStatistics;
+
 describe("updateStatistics", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    mockGetStatistics.mockReturnValue(baseStatistics);
+    storedStatistics = baseStatistics;
+    mockGetStatistics.mockImplementation(() => storedStatistics);
+    mockSaveStatistics.mockImplementation((stats) => {
+      storedStatistics = stats;
+    });
     useDeckStore.setState({ difficulty: levelOne });
     useBoardStore.setState({ numberOfMoves: 0 });
     useRecordStore.setState({ record: null });
@@ -93,10 +99,7 @@ describe("updateStatistics", () => {
 
   it("should update best and worst when they are not defined yet", () => {
     useBoardStore.setState({ numberOfMoves: 12 });
-    mockGetStatistics.mockReturnValueOnce({
-      gamesPlayed: 0,
-      scores: [],
-    });
+    storedStatistics = { gamesPlayed: 0, scores: [] };
 
     useRecordStore.getState().updateStatistics();
 
@@ -109,10 +112,10 @@ describe("updateStatistics", () => {
 
   it("should update best if it is not defined yet", () => {
     useBoardStore.setState({ numberOfMoves: 14 });
-    mockGetStatistics.mockReturnValueOnce({
+    storedStatistics = {
       gamesPlayed: 0,
       scores: [{ difficulty: levelOne, bestScore: undefined, worstScore: 17 }],
-    });
+    };
 
     useRecordStore.getState().updateStatistics();
 
@@ -124,10 +127,10 @@ describe("updateStatistics", () => {
   });
   it("should update worst if it is not defined yet", () => {
     useBoardStore.setState({ numberOfMoves: 25 });
-    mockGetStatistics.mockReturnValueOnce({
+    storedStatistics = {
       gamesPlayed: 0,
       scores: [{ difficulty: levelOne, bestScore: 10, worstScore: undefined }],
-    });
+    };
 
     useRecordStore.getState().updateStatistics();
 

@@ -47,6 +47,12 @@
   white-space: nowrap;
 }
 
+.short-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 @media (orientation: portrait) {
   .memory-board {
     grid-template-columns: repeat(3, minmax(0, 1fr));

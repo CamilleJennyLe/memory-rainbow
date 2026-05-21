@@ -1,9 +1,9 @@
 import { useBoardStore } from "../board/board-store/board.store";
 import { useDeckStore } from "../card-deck/card-deck-store/card-deck.store";
-import { getStatistics } from "../storage/statistics";
+import { getStatistics, saveStatistics } from "../storage/statistics";
 import type { Score, Statistics } from "./statistics.type";
 
-function updateRecords(statistics: Statistics): Score[] {
+function updateScores(statistics: Statistics): Score[] {
   const { scores } = statistics;
   const { difficulty } = useDeckStore.getState();
   const { numberOfMoves } = useBoardStore.getState();
@@ -40,25 +40,22 @@ function updateRecords(statistics: Statistics): Score[] {
   });
 }
 
-export function updatedStatistics(): Statistics {
+export function updateStoredStatistics() {
   const statistics = getStatistics();
-  const scores = updateRecords(statistics);
+  const scores = updateScores(statistics);
 
   const newStats = {
     ...statistics,
     gamesPlayed: statistics.gamesPlayed + 1,
     scores,
   };
-  return newStats;
+  saveStatistics(newStats);
 }
 
-export function getBestScore(stats: Statistics | undefined): number | null {
-  if (!stats?.scores) {
-    return null;
-  }
+export function getBestScore(): number | null {
   const { difficulty } = useDeckStore.getState();
   return (
-    stats.scores.find((score) => score.difficulty === difficulty)?.bestScore ??
-    null
+    getStatistics().scores?.find((s) => s.difficulty === difficulty)
+      ?.bestScore ?? null
   );
 }

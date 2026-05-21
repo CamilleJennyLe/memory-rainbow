@@ -1,6 +1,5 @@
 import { create } from "zustand";
-import { getStatistics, saveStatistics } from "../../storage/statistics";
-import { getBestScore, updatedStatistics } from "../statistics";
+import { getBestScore, updateStoredStatistics } from "../statistics";
 
 interface StatisticsStore {
   record: number | null;
@@ -8,14 +7,12 @@ interface StatisticsStore {
 }
 
 export const useRecordStore = create<StatisticsStore>((set) => ({
-  record: getBestScore(getStatistics()),
+  record: getBestScore(),
   updateStatistics: () =>
     set(() => {
-      const newStats = updatedStatistics();
-      const record = getBestScore(newStats);
-      saveStatistics(newStats);
+      updateStoredStatistics();
       return {
-        record,
+        record: getBestScore(),
       };
     }),
 }));

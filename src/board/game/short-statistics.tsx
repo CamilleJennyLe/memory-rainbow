@@ -9,16 +9,16 @@ export function ShortStatistics() {
   const record = useRecordStore((state) => state.record);
 
   return (
-    <div>
-      <p>
+    <p className="short-stats">
+      <div>
         Coups:{" "}
         <span className="game-moves">
           {numberOfMoves} / {difficulty}
         </span>
-      </p>
-      <p>
+      </div>
+      <div>
         Record: <span className="game-best-record">{record ?? "-"}</span>
-      </p>
-    </div>
+      </div>
+    </p>
   );
 }

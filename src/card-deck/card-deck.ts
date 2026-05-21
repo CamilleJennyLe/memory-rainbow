@@ -1,6 +1,6 @@
 import type { CardState } from "../board/card.types";
 import { aquaticClassNames } from "../card/aquatic/aquatic.type";
-import { catClassNames } from "../card/cats/cats";
+import { catClassNames, getCatCardStyle } from "../card/cats/cats";
 import {
   blue,
   green,
@@ -21,6 +21,7 @@ export const rainbowDeck: CardState[] = [
 
 export const catDeck: CardState[] = catClassNames.map((className) => ({
   cardClassName: className,
+  faceStyle: getCatCardStyle(className),
 }));
 
 export const aquaticDeck: CardState[] = aquaticClassNames.map((className) => ({

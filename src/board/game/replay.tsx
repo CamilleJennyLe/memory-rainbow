@@ -1,11 +1,7 @@
 import { useBoardStore } from "../board-store/board.store";
-import "./game.css";
+import { RainbowButton } from "../../common/rainbow-button/rainbow-button";
 
 export function Replay() {
   const { newGame } = useBoardStore();
-  return (
-    <button className="new-game-button" onClick={newGame}>
-      Rejouer
-    </button>
-  );
+  return <RainbowButton onClick={newGame}>Rejouer</RainbowButton>;
 }

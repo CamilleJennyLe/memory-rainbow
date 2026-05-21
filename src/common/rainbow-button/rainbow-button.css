@@ -1,0 +1,16 @@
+.rainbow-button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background: var(--rainbow-background-color);
+  color: black;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.15rem;
+}
+
+.rainbow-button:disabled {
+  background: #e1e1e1;
+  color: gray;
+  cursor: not-allowed;
+}

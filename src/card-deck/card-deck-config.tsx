@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDeckStore } from "./card-deck-store/card-deck.store";
 import { useBoardStore } from "../board/board-store/board.store";
+import { RainbowButton } from "../common/rainbow-button/rainbow-button";
 import "./card-deck-config.css";
 
 interface CardDeckConfigProps {
@@ -61,13 +62,9 @@ export function CardDeckConfig({ hideDeckConfig }: CardDeckConfigProps) {
         />
         Cartes aquatiques
       </label>
-      <button
-        onClick={handleConfigChange}
-        className="card-deck-config-button"
-        disabled={!anyDeckSelected}
-      >
+      <RainbowButton onClick={handleConfigChange} disabled={!anyDeckSelected}>
         Enregistrer
-      </button>
+      </RainbowButton>
     </div>
   );
 }

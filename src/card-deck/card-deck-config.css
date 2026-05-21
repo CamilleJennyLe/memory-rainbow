@@ -3,38 +3,3 @@
   flex-direction: column;
   gap: 1rem;
 }
-.card-deck-config-checkbox {
-  appearance: none;
-  margin-right: 0.5rem;
-  width: 20px;
-  height: 20px;
-  border-radius: 4px;
-  border: 2px solid var(--secondary-color);
-  background: var(--primary-color);
-  vertical-align: middle;
-  position: relative;
-  cursor: pointer;
-  transition: box-shadow 0.1s;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-  display: inline-block;
-}
-
-.card-deck-config-checkbox:checked {
-  background: var(--secondary-color);
-  border-color: var(--secondary-color);
-}
-
-.card-deck-config-checkbox:checked::after {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 6px;
-  height: 12px;
-  border: solid var(--primary-color);
-  border-width: 0 3px 3px 0;
-  border-radius: 1px;
-  /* The following centers the V visually and vertically */
-  transform: translate(-50%, -60%) rotate(45deg);
-}

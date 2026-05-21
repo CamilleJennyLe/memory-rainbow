@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDeckStore } from "./card-deck-store/card-deck.store";
 import { useBoardStore } from "../board/board-store/board.store";
+import { Checkbox } from "../common/checkbox/checkbox";
 import { RainbowButton } from "../common/rainbow-button/rainbow-button";
 import "./card-deck-config.css";
 
@@ -24,8 +25,7 @@ export function CardDeckConfig({ hideDeckConfig }: CardDeckConfigProps) {
     <div className="card-deck-config">
       <h3>Configuration du jeu de cartes</h3>
       <label>
-        <input
-          type="checkbox"
+        <Checkbox
           name="includeRainbow"
           checked={localConfig.includeRainbow}
           onChange={(e) =>
@@ -34,31 +34,26 @@ export function CardDeckConfig({ hideDeckConfig }: CardDeckConfigProps) {
               includeRainbow: e.target.checked,
             })
           }
-          className="card-deck-config-checkbox"
         />
         Cartes aux couleurs de l'arc-en-ciel
       </label>
       <label>
-        <input
-          type="checkbox"
+        <Checkbox
           name="includeCats"
           checked={localConfig.includeCats}
           onChange={(e) =>
             setLocalConfig({ ...localConfig, includeCats: e.target.checked })
           }
-          className="card-deck-config-checkbox"
         />
         Cartes chats
       </label>
       <label>
-        <input
-          type="checkbox"
+        <Checkbox
           name="includeAquatic"
           checked={localConfig.includeAquatic}
           onChange={(e) =>
             setLocalConfig({ ...localConfig, includeAquatic: e.target.checked })
           }
-          className="card-deck-config-checkbox"
         />
         Cartes aquatiques
       </label>
